@@ -132,6 +132,10 @@ namespace Web.Controllers
         [HttpPost]
         public IActionResult Upload(IFormFile file)
         {
+            if (file == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var plugin = DictionaryHostWeakReferences.FirstOrDefault(x => x.Key.Plugin.Name == file.FileName);
             if (plugin.Key != null)
             {
@@ -147,14 +151,17 @@ namespace Web.Controllers
                 Unload(loader.Value, loader.Key, loader.Key.Path);
 
             }
-            // Create new local file and copy contents of uploaded file
-            using (var localFile = System.IO.File.OpenWrite(pluginPath))
-            using (var uploadedFile = file.OpenReadStream())
-            {
-                uploadedFile.CopyTo(localFile);
-            }
 
-            _logger.LogInformation("File successfully uploaded");
+            if (fileName.EndsWith(".dll"))
+            {
+                using (var localFile = System.IO.File.OpenWrite(pluginPath))
+                using (var uploadedFile = file.OpenReadStream())
+                {
+                    uploadedFile.CopyTo(localFile);
+                }
+
+                _logger.LogInformation("File successfully uploaded");
+            }
             return RedirectToAction("Index", "Home");
         }
     }
