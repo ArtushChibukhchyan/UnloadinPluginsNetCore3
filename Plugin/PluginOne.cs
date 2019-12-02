@@ -1,12 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Composition;
-using System.Dynamic;
-using Interface;
 
 namespace Plugin
 {
-    [Export(typeof(PluginOne))]
-    public class PluginOne : BasePlugin
+    public class PluginOne : IPlugin
     {
         public PluginOne()
         {

@@ -9,8 +9,7 @@ using Plugin;
 
 namespace Plugin
 {
-    [Export(typeof(PluginTwo))]
-    public class PluginTwo : BasePlugin
+    public class PluginTwo : IPlugin
     {
         public PluginTwo()
         {
