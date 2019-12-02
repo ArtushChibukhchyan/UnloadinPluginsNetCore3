@@ -69,9 +69,9 @@ namespace WebMEF.Controllers
             {
                 try
                 {
-                    IPlugin plutinInstance = (IPlugin)Activator.CreateInstance(pluginType);
-                    alc.Plugin = new BasePlugin(plutinInstance);
-                    if (DictionaryHostWeakReferences.Any(t => t.Key.Plugin.Id == plutinInstance.Id))
+                    IPlugin plugin = (IPlugin)Activator.CreateInstance(pluginType);
+                    alc.Plugin = new BasePlugin(plugin);
+                    if (DictionaryHostWeakReferences.Any(t => t.Key.Plugin.Id == plugin.Id))
                         return;
                     DictionaryHostWeakReferences.Add(alc, testAlcWeakRef);
                 }

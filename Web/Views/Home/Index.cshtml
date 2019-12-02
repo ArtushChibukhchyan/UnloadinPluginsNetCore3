@@ -11,7 +11,7 @@
     <br/>
     @foreach (IPlugin p in Model)
     {
-        <h4>@p.GetMessage() <a asp-action="DeletePlugin" asp-route-id="@p.Id">Delete</a></h4>
+        <h4 class="alert-success">@p.GetMessage() <a asp-action="DeletePlugin" asp-route-id="@p.Id">Delete</a></h4>
     }
     
     <br/>
@@ -20,5 +20,4 @@
         <input type="file" name="file" />
         <button type="submit">Upload</button>
     </form>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

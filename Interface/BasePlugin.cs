@@ -11,10 +11,10 @@ namespace Interface
         {
             
         }
-        public BasePlugin(IPlugin plutinInstance)
+        public BasePlugin(IPlugin plugin)
         {
-            this.Name = plutinInstance.Name;
-            Id = plutinInstance.Id;
+            this.Name = plugin.Name;
+            Id = plugin.Id;
         }
 
         public Guid Id { get; set; }

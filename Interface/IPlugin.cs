@@ -17,6 +17,9 @@ namespace Plugin
     {
         Guid Id { get; set; }
         string GetMessage();
+        /// <summary>
+        /// Should be unique
+        /// </summary>
         string Name { get; set; }
 
     }

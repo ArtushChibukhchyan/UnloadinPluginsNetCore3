@@ -1,6 +1,7 @@
 ﻿using System;
+using Plugin;
 
-namespace Plugin
+namespace PluginOne
 {
     public class PluginOne : IPlugin
     {
