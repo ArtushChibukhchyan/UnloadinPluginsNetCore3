@@ -112,6 +112,8 @@ namespace WebMEF.Controllers
         [HttpGet]
         public IActionResult DeletePlugin(string id)
         {
+            if (string.IsNullOrEmpty(id))
+                return RedirectToAction("Index"); 
             var plugin = DictionaryHostWeakReferences.FirstOrDefault(x => x.Key.Plugin.Id.ToString() ==  id);
             if (plugin.Key != null)
             {

@@ -6,7 +6,7 @@ using Interface;
 namespace Plugin
 {
     [Export(typeof(PluginOne))]
-    public class PluginOne : IPlugin
+    public class PluginOne : BasePlugin
     {
         public PluginOne()
         {
