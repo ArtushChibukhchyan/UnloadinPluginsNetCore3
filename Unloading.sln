@@ -8,8 +8,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginOne", "Plugin\PluginO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface", "Interface\Interface.csproj", "{C9BCDE8B-51BA-40A6-B7A1-186F6C6B6CCE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginDependency", "PluginDependency\PluginDependency.csproj", "{0DFE9D18-D6B3-4097-AF87-D06B1B9DB4FA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{4DC18BBF-873A-417D-99F6-BD34FB04520E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginTwo", "PluginTwo\PluginTwo.csproj", "{76C2A201-3D43-4677-8803-D7CE76F9B619}"
@@ -32,10 +30,6 @@ Global
 		{C9BCDE8B-51BA-40A6-B7A1-186F6C6B6CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9BCDE8B-51BA-40A6-B7A1-186F6C6B6CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9BCDE8B-51BA-40A6-B7A1-186F6C6B6CCE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DFE9D18-D6B3-4097-AF87-D06B1B9DB4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DFE9D18-D6B3-4097-AF87-D06B1B9DB4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DFE9D18-D6B3-4097-AF87-D06B1B9DB4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DFE9D18-D6B3-4097-AF87-D06B1B9DB4FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DC18BBF-873A-417D-99F6-BD34FB04520E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DC18BBF-873A-417D-99F6-BD34FB04520E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC18BBF-873A-417D-99F6-BD34FB04520E}.Release|Any CPU.ActiveCfg = Release|Any CPU

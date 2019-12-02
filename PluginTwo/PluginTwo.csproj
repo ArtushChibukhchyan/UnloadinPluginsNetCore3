@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Interface\Interface.csproj" />
-    <ProjectReference Include="..\PluginDependency\PluginDependency.csproj" />
   </ItemGroup>
 
 </Project>
