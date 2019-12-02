@@ -29,9 +29,9 @@ namespace WebMEF.Controllers
             try
             {
                 alc.Unload();
+                alc = null;
                 DictionaryHostWeakReferences.Remove(DictionaryHostWeakReferences
                     .FirstOrDefault(x => x.Key.Path == pluginFullPath).Key);
-                alc = null;
                 for (int i = 0; testAlcWeakRef.IsAlive && (i < 10); i++)
                 {
                     GC.Collect();
@@ -46,10 +46,12 @@ namespace WebMEF.Controllers
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
+                    _logger.LogError(e.Message);
                 }
             }
             catch (Exception e)
             {
+                _logger.LogError(e.Message);
             }
         }
 
@@ -68,8 +70,6 @@ namespace WebMEF.Controllers
                 try
                 {
                     IPlugin plutinInstance = (IPlugin)Activator.CreateInstance(pluginType);
-                    alc.PluginName = plutinInstance.Name;
-                    alc.PluginMessage = plutinInstance.GetMessage();
                     alc.Plugin = new BasePlugin(plutinInstance);
                     if (DictionaryHostWeakReferences.Any(t => t.Key.Plugin.Id == plutinInstance.Id))
                         return;
@@ -77,7 +77,7 @@ namespace WebMEF.Controllers
                 }
                 catch (Exception e)
                 {
-                    string error = e.Message;
+                    _logger.LogError(e.Message);
                 }
 
             }
@@ -124,7 +124,7 @@ namespace WebMEF.Controllers
         [HttpPost]
         public IActionResult Upload(IFormFile file)
         {
-            var plugin = DictionaryHostWeakReferences.FirstOrDefault(x => x.Key.PluginName == file.FileName);
+            var plugin = DictionaryHostWeakReferences.FirstOrDefault(x => x.Key.Plugin.Name == file.FileName);
             if (plugin.Key != null)
             {
                 Unload(plugin.Value, plugin.Key, plugin.Key.Path);
@@ -146,8 +146,7 @@ namespace WebMEF.Controllers
                 uploadedFile.CopyTo(localFile);
             }
 
-            ViewBag.Message = "File successfully uploaded";
-
+            _logger.LogInformation("File successfully uploaded");
             return RedirectToAction("Index", "Home");
         }
     }

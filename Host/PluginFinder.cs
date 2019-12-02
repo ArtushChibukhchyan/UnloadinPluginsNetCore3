@@ -18,7 +18,7 @@ namespace Host
         public IReadOnlyCollection<string> FindAssemliesWithPlugins(string path)
         {
             string[] assemblies = Directory.GetFiles(path, "*.dll", new EnumerationOptions() { RecurseSubdirectories = true });
-            return assemblies; // FindPluginsInAssemblies(assemblies);
+            return assemblies; 
         }
 
         private IReadOnlyCollection<Assembly> FindPluginsInAssemblies(string[] assemblyPaths)
