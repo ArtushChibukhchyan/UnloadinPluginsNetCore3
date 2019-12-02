@@ -1,0 +1,24 @@
+﻿@using Plugin
+@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Plugins</h1>
+    <br/>
+    <br/>
+    @foreach (string p in Model)
+    {
+        <h4>@p <a asp-action="DeletePlugin" asp-route-name="@p">Delete</a></h4>
+    }
+    
+    <br/>
+
+    <form method="post" asp-action="Upload" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">Upload</button>
+    </form>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
