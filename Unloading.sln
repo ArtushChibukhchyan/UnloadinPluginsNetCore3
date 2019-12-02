@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interface", "Interface\Inte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginDependency", "PluginDependency\PluginDependency.csproj", "{0DFE9D18-D6B3-4097-AF87-D06B1B9DB4FA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMEF", "WebMEF\WebMEF.csproj", "{4DC18BBF-873A-417D-99F6-BD34FB04520E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "WebMEF\Web.csproj", "{4DC18BBF-873A-417D-99F6-BD34FB04520E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginTwo", "PluginTwo\PluginTwo.csproj", "{76C2A201-3D43-4677-8803-D7CE76F9B619}"
 EndProject
