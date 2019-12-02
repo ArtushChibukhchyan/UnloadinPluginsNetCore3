@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Host;
+using Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -47,7 +48,7 @@ namespace WebMEF.Controllers
                     Console.WriteLine(e);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
             }
         }
@@ -69,24 +70,22 @@ namespace WebMEF.Controllers
                     IPlugin plutinInstance = (IPlugin)Activator.CreateInstance(pluginType);
                     alc.PluginName = plutinInstance.Name;
                     alc.PluginMessage = plutinInstance.GetMessage();
-                    //  BasePlugin p = new BasePlugin(plutinInstance);
-                    //  alc.Plugin = p;
-                    if (DictionaryHostWeakReferences.Any(t => t.Key.Path == path))
+                    alc.Plugin = new BasePlugin(plutinInstance);
+                    if (DictionaryHostWeakReferences.Any(t => t.Key.Plugin.Id == plutinInstance.Id))
                         return;
                     DictionaryHostWeakReferences.Add(alc, testAlcWeakRef);
                 }
                 catch (Exception e)
                 {
                     string error = e.Message;
-                    // throw;
                 }
-            
+
             }
         }
         public IActionResult Index()
         {
 
-            List<string> plugins = new List<string>();
+            List<IPlugin> plugins = new List<IPlugin>();
             WeakReference hostAlcWeakRef;
             HostAssemblyLoadContext alc;
 
@@ -104,16 +103,16 @@ namespace WebMEF.Controllers
 
             foreach (var dictionaryHostWeakReference in DictionaryHostWeakReferences)
             {
-                plugins.Add(dictionaryHostWeakReference.Key.PluginMessage);
+                plugins.Add(dictionaryHostWeakReference.Key.Plugin);
             }
 
             return View(plugins);
         }
 
         [HttpGet]
-        public IActionResult DeletePlugin(string name)
+        public IActionResult DeletePlugin(string id)
         {
-            var plugin = DictionaryHostWeakReferences.FirstOrDefault(x => x.Key.PluginMessage == name);
+            var plugin = DictionaryHostWeakReferences.FirstOrDefault(x => x.Key.Plugin.Id.ToString() ==  id);
             if (plugin.Key != null)
             {
                 Unload(plugin.Value, plugin.Key, plugin.Key.Path);
@@ -130,7 +129,7 @@ namespace WebMEF.Controllers
             {
                 Unload(plugin.Value, plugin.Key, plugin.Key.Path);
             }
-            
+
             var fileName = Path.GetFileName(file.FileName);
             string pluginPath = $@"D:\c#\Plugins\{fileName}";
 

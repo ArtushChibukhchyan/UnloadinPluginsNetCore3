@@ -13,9 +13,10 @@ namespace Plugin
     // the plugin is loaded and once into the default AssemblyLoadContext where the host is loaded, 
     // the Interface would become two different types and it would not be possible to
     // use Interface instance created on the plugin side on the host side
-    public interface IPlugin 
+    public interface IPlugin
     {
-         string GetMessage();
+        Guid Id { get; set; }
+        string GetMessage();
         string Name { get; set; }
 
     }
