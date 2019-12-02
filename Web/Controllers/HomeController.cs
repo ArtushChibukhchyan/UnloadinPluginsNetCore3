@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Plugin;
 using PluginHost;
 
-namespace WebMEF.Controllers
+namespace Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -84,7 +84,12 @@ namespace WebMEF.Controllers
         }
         public IActionResult Index()
         {
+            var plugins = ExecutePlugins();
+            return View(plugins);
+        }
 
+        private List<IPlugin> ExecutePlugins()
+        {
             List<IPlugin> plugins = new List<IPlugin>();
             WeakReference hostAlcWeakRef;
             HostAssemblyLoadContext alc;
@@ -95,6 +100,7 @@ namespace WebMEF.Controllers
             {
                 Execute(out hostAlcWeakRef, out alc, assemblyPath);
             }
+
             for (int i = 0; i < 10; i++)
             {
                 GC.Collect();
@@ -106,7 +112,7 @@ namespace WebMEF.Controllers
                 plugins.Add(dictionaryHostWeakReference.Key.Plugin);
             }
 
-            return View(plugins);
+            return plugins;
         }
 
         [HttpGet]
